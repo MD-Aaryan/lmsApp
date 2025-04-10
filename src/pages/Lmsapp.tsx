@@ -1,4 +1,4 @@
-export default function App() {
+export default function Lmsapp() {
   return (
     <div>
       <h1>hello</h1>

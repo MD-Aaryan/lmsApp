@@ -8,7 +8,7 @@ interface UserInfo {
   id: string;
   email: string;
   name: string;
-  mobile: string;
+  phono: string;
   iat: number;
   exp: number;
 }

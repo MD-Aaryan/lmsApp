@@ -33,6 +33,8 @@ export default function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/" element={<ProtectedRoutes />}>
         <Route path="/" element={<Lmsapp />} />
+        {/* example of nested route */}
+        <Route path="/todo-detail" element={<h1>Todo Details</h1>} />
       </Route>
     </Routes>
   );
