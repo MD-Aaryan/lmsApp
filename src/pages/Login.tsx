@@ -48,7 +48,6 @@ export default function Login() {
 
   useEffect(() => {
     if (data?.token) {
-      console.log("data", data.token);
       localStorage.setItem("token", data.token);
       navigate("/");
     }

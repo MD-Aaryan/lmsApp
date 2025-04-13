@@ -12,7 +12,7 @@ interface UserInfo {
   iat: number;
   exp: number;
 }
-
+// library management system layout
 export default function AppLayout() {
   const token = localStorage.getItem("token");
 
@@ -24,6 +24,11 @@ export default function AppLayout() {
       setUserInfo(decodedToken);
     }
   }, [token]);
+  const useNavigate = ({ to }: { to: string }) => {
+    if (token) {
+      window.location.href = to;
+    }
+  };
   return (
     <div className="flex flex-col w-screen h-screen overflow-hidden items-center">
       <nav className="flex w-full items-center justify-between bg-yellow-100 p-2">
@@ -35,10 +40,10 @@ export default function AppLayout() {
           />
         )}
 
-        <h1 className="text-2xl font-bold">TODO App</h1>
-        <div className="flex items-center gap-4">
+        <h1 className="text-2xl font-bold">Library Management System</h1>
+        <div className="flex items-center gap-2">
           <LogOut
-            className="cursor-pointer"
+            className="cursor-pointer mx-20"
             onClick={() => {
               localStorage.removeItem("token");
               window.location.href = "/login";
@@ -46,12 +51,40 @@ export default function AppLayout() {
           />
         </div>
       </nav>
-      {/* <div className="flex w-full h-full"> */}
-      {/* <aside className="h-full w-[600px] bg-amber-200">Sidebar</aside> */}
-      <div className="w-[600px] mx-auto">
-        <Outlet />
+      <div className="flex w-full h-full">
+        <aside className=" flex  h-full w-[150px] bg-amber-100">
+          <div className="flex flex-col gap-4 p-4">
+            <h2 className="text-2xl font-bold">Sidebar</h2>
+            <h2
+              onClick={() => useNavigate({ to: "/" })}
+              className=" mx-5 font-bold cursor-pointer"
+            >
+              Home
+            </h2>
+            <h2
+              onClick={() => useNavigate({ to: "/members" })}
+              className="  mx-5 font-bold cursor-pointer"
+            >
+              Member
+            </h2>
+            <h2
+              onClick={() => useNavigate({ to: "/book" })}
+              className=" mx-5 font-bold cursor-pointer"
+            >
+              Book
+            </h2>
+            <h2
+              onClick={() => useNavigate({ to: "/transaction" })}
+              className=" mx-5 font-bold cursor-pointer"
+            >
+              Transaction
+            </h2>
+          </div>
+        </aside>
+        <div className="w-[600px] mx-auto">
+          <Outlet />
+        </div>
       </div>
-      {/* </div> */}
     </div>
   );
 }

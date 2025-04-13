@@ -3,7 +3,10 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { jwtDecode } from "jwt-decode";
 import AppLayout from "./layout/Applayout";
-import Lmsapp from "./pages/Lmsapp";
+
+import Members from "./components/Members";
+import Book from "./components/Book";
+import TransactionManager from "./components/Transcation";
 
 interface DecodedToken {
   exp: number;
@@ -32,9 +35,9 @@ export default function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/" element={<ProtectedRoutes />}>
-        <Route path="/" element={<Lmsapp />} />
-        {/* example of nested route */}
-        <Route path="/todo-detail" element={<h1>Todo Details</h1>} />
+        <Route path="/members" element={<Members />} />
+        <Route path="/book" element={<Book />} />
+        <Route path="/transaction" element={<TransactionManager />} />
       </Route>
     </Routes>
   );
